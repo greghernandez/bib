@@ -2,6 +2,10 @@
 <html>
 
 <head>
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 33d7033df2277c5912f936df9ecedcb377356cc5
   {% block title %}<title>Biblioteca</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,6 +54,7 @@
                       Novedades
                     </a>
 
+<<<<<<< HEAD
                     <!--Autentificacion de inicio de sesión-->
                     {% if user.is_authenticated %}
                     <a class="navbar-item">Cuenta: {{ user.get_username }}</a>
@@ -72,6 +77,41 @@
     <!-- END NAV -->
 
 
+=======
+<div class="container-fluid">
+
+<div class="row">
+  <div class="col-sm-2">
+  {% block sidebar %}
+  <ul class="sidebar-nav">
+    <li><a href="{% url 'index' %}">Inicio</a></li>
+    <li><a href="{% url 'books' %}">Libros</a></li>
+    <li><a href="{% url 'authors' %}">Autores</a></li>
+  </ul>
+ 
+  <ul class="sidebar-nav">
+   {% if user.is_authenticated %}
+     <li>User: {{ user.get_username }}</li>
+     <li><a href="{% url 'my-borrowed' %}">Mis préstamos</a></li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Salir</a></li>   
+   {% else %}
+     <li><a href="{% url 'login'%}?next={{request.path}}">Entrar</a></li>   
+   {% endif %} 
+  </ul>
+  
+   {% if user.is_staff %}
+   <hr />
+   <ul class="sidebar-nav">
+   <li>Libros</li>
+   {% if perms.catalog.can_mark_returned %}
+   <li><a href="{% url 'all-borrowed' %}">Préstamos</a></li>
+   {% endif %}
+   </ul>
+    {% endif %}
+ 
+{% endblock %}
+  </div>
+>>>>>>> 33d7033df2277c5912f936df9ecedcb377356cc5
   <div class="col-sm-10 ">
   {% block content %}{% endblock %}
   
@@ -80,13 +120,13 @@
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">anterior</a>
                 {% endif %}
                 <span class="page-current">
                     Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                 </span>
                 {% if page_obj.has_next %}
-                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">siguiente</a>
                 {% endif %}
             </span>
         </div>
