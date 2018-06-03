@@ -2,25 +2,41 @@
 
 {% block content %}
 
-<h1>Autores</h1>
+<style>
+  .hero{
+    margin:10px auto 0px auto !important;
+  }
+</style>
+<section class="hero welcome is-small is-primary">
+      <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Autores</h1>
+            <h2 class="subtitle">Una gran lista de reconocidos autores</h2>
+        </div>
+    </div>
+</section>
+
+<section class="section cont-normal column is-12">
 
 {% if author_list %}
-  <ul>
 
   {% for author in author_list %}
-    <li>
-      <a href="{{ author.get_absolute_url }}">
-      {{ author }} ({{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %})
-      </a>
-    </li>
+  <div class="card column mrg-p is-2 n-card">
+  	<div class="card-content">
+            <div class="media-content center">
+      		<p><a href="{{ author.get_absolute_url }}">
+      		{{ author }}
+      		</a></p>
+  		</div>
+  	</div>
+  </div>
   {% endfor %}
 
- </ul>
 {% else %}
   <p>No hay autores aún.</p>
 {% endif %}
         
-        
+ </section>
         
 {% endblock %}
 
