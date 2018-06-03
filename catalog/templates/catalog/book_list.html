@@ -1,7 +1,30 @@
 {% extends "base_generic.html" %}
+<section class="hero welcome is-small is-primary">
+      <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Libros</h1>
+            <h2 class="subtitle">Los libros recien agregados al catalogo de la biblioteca</h2>
+        </div>
+    </div>
+</section>  
 
 {% block content %}
-    <h1>Libros</h1>
+<style>
+  .hero{
+    margin:10px auto 0px auto !important;
+  }
+</style>
+<section class="hero welcome is-small is-primary">
+      <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Libros</h1>
+            <h2 class="subtitle">Los libros recien agregados al catalogo de la biblioteca</h2>
+        </div>
+    </div>
+    </section>
+
+    <!---->
+    <section class="section cont-normal column is-12">
 
     {% if book_list %}
     <ul>
@@ -16,6 +39,7 @@
 
     {% else %}
       <p>Aún no hay libros.</p>
-    {% endif %}       
+    {% endif %}
+    </section>      
 {% endblock %}
 
