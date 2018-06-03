@@ -1,49 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<style>
-    body{
-    height: 100%;
-    background: -webkit-linear-gradient(left, #5B86E5, #36D1DC);
-    background: -o-linear-gradient(left, #5B86E5, #36D1DC);
-    background: linear-gradient(to right, #5B86E5, #36D1DC);
-    }
-    input{
-    background-color: white !important;
-    border-color: #dbdbdb !important;
-    color: #363636 !important;
-    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1) !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    align-items: center;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  box-shadow: none;
-  display: inline-flex;
-  font-size: 1rem;
-  height: 2.25em;
-  justify-content: flex-start;
-  line-height: 1.5;
-  padding-bottom: calc(0.375em - 1px);
-  padding-left: calc(0.625em - 1px);
-  padding-right: calc(0.625em - 1px);
-  padding-top: calc(0.375em - 1px);
-  position: relative;
-  vertical-align: top;
-    }
-input[type~=submit]{
-    background-color: #209cee !important;
-    border-color: transparent !important;
-    color: #fff !important;
-    display: inline-block;
-    border-radius: 290486px;
-    padding-left: 1em !important;
-    padding-right: 1em !important;
-    padding-top: calc(0.375em - 1px) !important;
-    text-align: center !important;
-}
-</style>
-<section class="hero is-fullheight">
+<section class="hero is-fullheight gradient-blue">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
@@ -82,17 +40,16 @@ input[type~=submit]{
                         {% csrf_token %}
                             <div class="field">
                                 <div class="control">
-                                    {{form.username }}
+                                    <input class="input" type="email" placeholder="Email" autofocus="">
                                 </div>
                             </div>
 
                             <div class="field">
                                 <div class="control">
-                                    {{ form.password }}
+                                    <input class="input" type="password" placeholder="Contraseña">
                                 </div>
                             </div>
-                            <input type="submit" value="login" />
-                            <input type="hidden" name="next" value="{{ next }}" />
+                            <button class="button is-rounded is-block is-info is-fullwidth">Login</button>
                         </form>
                     </div>
                     <p class="has-text-white">
@@ -103,5 +60,24 @@ input[type~=submit]{
             </div>
         </div>
     </section>
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Olvidaste tu contraseña?</a></p>
 
 {% endblock %}
