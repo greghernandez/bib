@@ -25,21 +25,26 @@
 
     <!---->
     <section class="section cont-normal column is-12">
-
-    {% if book_list %}
-    <ul>
-
+      {% if book_list %}
       {% for book in book_list %}
-      <li>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
-      </li>
+      <div class="card column mrg-p is-2 n-card">
+        <div class="card-image">
+          <figure class="image is-5by4">
+            <img src="https://www.resnap.com/images/products/a5portrait/a5-portrait-s.png" alt="Placeholder image">
+          </figure>
+        </div>
+          <div class="card-content">
+            <div class="media-content center">
+              <p><a href="{{ book.get_absolute_url }}" class="title is-6">{{ book.title }}</a></p>
+              <p class="subtitle is-7">{{book.author}}</p>
+            </div>
+          </div>
+      </div>
       {% endfor %}
-
-    </ul>
-
-    {% else %}
+      {% else %}
       <p>Aún no hay libros.</p>
-    {% endif %}
+      {% endif %}
+
     </section>      
 {% endblock %}
 
