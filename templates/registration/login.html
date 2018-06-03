@@ -1,27 +1,43 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
 <section class="hero is-fullheight gradient-blue">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
+
+                    <!--Mensajes-->
+
+                    {% if form.errors %}
+                    <article class="message is-danger">
+                    <div class="message-body">
+                        Tu usuario y contraseña no coinciden. Inténtalo de nuevo.
+                     </div>
+                    </article>
+                    {% endif %}
+
+                    {% if next %}
+                        {% if user.is_authenticated %}
+                        <article class="message is-danger">
+                            <div class="message-body">
+                                No tienes permiso para acceder a esta página, accede con una cuenta con los permisos adecuados.
+                            </div>
+                        </article>
+                        {% else %}
+                        <article class="message is-warning">
+                            <div class="message-body">
+                            Para acceder a esta página debes iniciar sesión.
+                             </div>
+                        </article>
+                        {% endif %}
+                    {% endif %}
+                    <!--/Mensajes-->
+
                     <h3 class="title has-text-white">Login</h3>
                     <p class="subtitle has-text-white">Para entrar completa el formulario.</p>
                     <div class="box">
-                        <form>
+                        <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
                             <div class="field">
                                 <div class="control">
                                     <input class="input" type="email" placeholder="Email" autofocus="">
@@ -37,8 +53,8 @@
                         </form>
                     </div>
                     <p class="has-text-white">
-                        <a href="../" class="has-text-white">Registrarme</a> &nbsp;·&nbsp;
-                        <a href="../" class="has-text-white">Olvide mi contraseña</a> &nbsp;·&nbsp;
+                        &nbsp;·&nbsp;
+                        <a href="{% url 'password_reset' %}" class="has-text-white">Olvide mi contraseña</a> &nbsp;·&nbsp;
                     </p>
                 </div>
             </div>
