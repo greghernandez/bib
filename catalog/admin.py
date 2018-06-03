@@ -50,7 +50,7 @@ class BookAdmin(admin.ModelAdmin):
      - fields to be displayed in list view (list_display)
      - adds inline addition of book instances in book view (inlines)
     """
-    list_display = ('title', 'author', 'display_genre', 'portada')
+    list_display = ('title', 'author', 'display_genre')
     inlines = [BooksInstanceInline]
 
 admin.site.register(Book, BookAdmin)
