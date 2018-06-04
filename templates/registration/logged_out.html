@@ -1,7 +1,14 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<p>Logged out!</p>  
 
-<a href="{% url 'login'%}">Click here to login again.</a>
+<section class="section">
+    <article class="message is-link">
+      <div class="message-body">
+        <p>Cerraste sesión.</p>
+        <a href="{% url 'login'%}">Entrar de nuevo.</a>
+      </div>
+    </article>
+</section>  
+
 {% endblock %}

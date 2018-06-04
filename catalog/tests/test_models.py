@@ -14,12 +14,12 @@ class AuthorModelTest(TestCase):
     def test_first_name_label(self):
         author=Author.objects.get(id=1)
         field_label = author._meta.get_field('first_name').verbose_name
-        self.assertEquals(field_label,'first name')
+        self.assertEquals(field_label,'Nombre')
         
     def test_last_name_label(self):
         author=Author.objects.get(id=1)
         field_label = author._meta.get_field('last_name').verbose_name
-        self.assertEquals(field_label,'last name')
+        self.assertEquals(field_label,'apellidos')
 
     def test_date_of_birth_label(self):
         author=Author.objects.get(id=1)

@@ -14,16 +14,27 @@
         </div>
     </div>
 </section>
-<section class="section cont-normal column is-12">
-<h4 class="subtitle is-3">Libros</h4>
 
-<div class="column is-12 mrg-p">
-{% for book in author.book_set.all %}
-<div class="column is-12 card">
-  <a href="{% url 'book-detail' book.pk %}">{{book}}</a> ({{book.bookinstance_set.all.count}})
-  <dd>{{book.summary}}</dd>
-  </div>
-{% endfor %}
-</div>
+<section class="section cont-normal column is-12">
+	<h4 class="subtitle is-3">Libros</h4>
+	{% for book in author.book_set.all %}
+        <div class="card column mrg-p is-12 n-card">
+          <header class="card-header center">
+          	<p class="card-header-title"><a href="{% url 'book-detail' book.pk %}">{{book}}</a>
+  ({{book.bookinstance_set.all.count}})
+          </p>
+          </header>
+          <div class="card-content">
+              <div class="media-content">
+                <p>  <dd>{{book.summary}}</dd>
+                </p>
+              </div>
+          </div>
+          <footer class="card-footer">
+            <a href="{% url 'book-detail' book.pk %}" class="card-footer-item">Más información</a>
+          </footer>
+        </div>
+        {% endfor %}
+      </section>
 </section>
 {% endblock %}

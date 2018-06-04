@@ -1,20 +1,86 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Biblioteca | Inicio</h1>
+<style>
+  .hero{
+    margin:10px auto 0px auto !important;
+  }
+  a{
+  	text-decoration: none;
+  }
+</style>
 
-<p>Bienvenido a la <em>Biblioteca</em>, nuestro proyecto para la materia de Paradigmas de la Programación.</p>
-<p>Desarrollado por Eduardo Alcalá y Gregorio Hernández</p>
-
-<p>La biblioteca cuenta con la siguiente información:</p>
-<ul>
-<li><strong>Libros:</strong> {{ num_books }}</li>
-<li><strong>Copias:</strong> {{ num_instances }}</li>
-<li><strong>Copias disponibles:</strong> {{ num_instances_available }}</li>
-<li><strong>Autores:</strong> {{ num_authors }}</li>
-</ul>
-
+<!---
+<nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="../">Biblioteca</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Inicio</a></li>
+    </ul>
+</nav>
 
 Has visitado esta página {{ num_visits }} veces.
+-->
+
+<section class="hero welcome is-small is-info">
+      <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Biblioteca</h1>
+            <h2 class="subtitle">Busca entre nuestro catalogo de libros que puedes solicitar</h2>
+        </div>
+    </div>
+</section>
+
+<section class="info-tiles">
+                    <div class="tile is-ancestor has-text-centered">
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">{{ num_books }}</p>
+                                <p class="subtitle">Libros</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">{{ num_instances }}</p>
+                                <p class="subtitle">Copias</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">{{ num_instances_available }}</p>
+                                <p class="subtitle">Copias disponibles</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">{{ num_authors }}</p>
+                                <p class="subtitle">Autores</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+		<section class="section">
+                <h2 class="subtitle">Algunos libros</h2>
+                <div class="horizontal-scroll scrolling-wrapper">
+                {% if all_books %}
+      			{% for book in all_books %}
+                  <div class="card slide">
+                    <div class="card-image">
+                      <figure class="image is-5by4">
+                        <img src="https://www.resnap.com/images/products/a5portrait/a5-portrait-s.png" alt="Placeholder image">
+                      </figure>
+                    </div>
+                      <div class="card-content">
+                        <div class="media-content center">
+                          <p class="title is-5"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+                          <p class="subtitle is-6">{{book.author}}</p>
+                        </div>
+                      </div>
+                  </div>
+                   {% endfor %}
+      				{% else %}
+      				<p>Aún no hay libros.</p>
+      				{% endif %}
+              </div>
+          </section>
 
 {% endblock %}
