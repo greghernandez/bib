@@ -81,12 +81,14 @@ input[type~=submit]{
                         <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                             <div class="field">
+                                <label for="">Usuario:</label>
                                 <div class="control">
                                     {{form.username }}
                                 </div>
                             </div>
 
                             <div class="field">
+                                <label for="">Constraseña: </label>
                                 <div class="control">
                                     {{ form.password }}
                                 </div>
@@ -95,10 +97,11 @@ input[type~=submit]{
                             <input type="hidden" name="next" value="{{ next }}" />
                         </form>
                     </div>
+                    <!--
                     <p class="has-text-white">
                         &nbsp;·&nbsp;
                         <a href="{% url 'password_reset' %}" class="has-text-white">Olvide mi contraseña</a> &nbsp;·&nbsp;
-                    </p>
+                    </p>-->
                 </div>
             </div>
         </div>
