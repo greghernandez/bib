@@ -17,12 +17,13 @@
 <section class="section cont-normal column is-12">
 <h4 class="subtitle is-3">Libros</h4>
 
-<dl>
+<div class="column is-12 mrg-p">
 {% for book in author.book_set.all %}
-  <dt><a href="{% url 'book-detail' book.pk %}">{{book}}</a> ({{book.bookinstance_set.all.count}})</dt>
+<div class="column is-12 card">
+  <a href="{% url 'book-detail' book.pk %}">{{book}}</a> ({{book.bookinstance_set.all.count}})
   <dd>{{book.summary}}</dd>
+  </div>
 {% endfor %}
-</dl>
-
+</div>
 </section>
 {% endblock %}
