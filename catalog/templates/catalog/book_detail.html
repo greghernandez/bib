@@ -2,7 +2,12 @@
 
 {% block content %}
 
-<h1>Título: {{ book.title }}</h1>
+<div class="column is-6 n-card is-half">
+    <img src="https://www.resnap.com/images/products/a5portrait/a5-portrait-s.png" alt="">
+</div>
+<div class="column is-6 n-card center is-half">
+    <p class="title is-4">{{ book.title }}</p>
+</div>
 
 <p><strong>Autor:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p>
 <p><strong>Sinopsis:</strong> {{ book.summary }}</p>
