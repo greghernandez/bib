@@ -47,9 +47,6 @@
                     <a class="navbar-item" href="{% url 'authors' %}">
                       Autores
                     </a>
-                    <a class="navbar-item" href="novedades.html">
-                      Novedades
-                    </a>
                     <!--Autentificacion de inicio de sesión-->
                     {% if user.is_authenticated %}
                     <a class="navbar-item">Cuenta: {{ user.get_username }}</a>

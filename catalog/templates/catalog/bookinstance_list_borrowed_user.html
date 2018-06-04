@@ -1,20 +1,50 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>Libros en préstamo</h1>
+<style>
+  .hero{
+    margin:10px auto 0px auto !important;
+  }
+</style>
+
+<section class="hero welcome is-small is-primary">
+      <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Libros en préstamo</h1>
+            <h2 class="subtitle">Aquí aparecerán los libros que has pedido prestados</h2>
+        </div>
+    </div>
+</section>
 
     {% if bookinstance_list %}
     <ul>
 
       {% for bookinst in bookinstance_list %} 
-      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})        
-      </li>
+      <section class="section cont-normal column is-12">
+        <div class="card column mrg-p is-3 n-card">
+          <header class="card-header center">
+            <p class="card-header-title"><a href="{% url 'book-detail' bookinst.book.pk %}">Libro: {{bookinst.book.title}}</a></p>
+          </header>
+          <div class="card-content">
+              <div class="media-content">
+      <p class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'book-detail' bookinst.book.pk %}">Información del Libro</a>       
+      </p>
+      <p>Fecha de entrega: ({{ bookinst.due_back }})</p>
       {% endfor %}
-    </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
     {% else %}
-      <p>Aún no hay libros en préstamo.</p>
+    <section class="section">
+    <article class="message is-link">
+      <div class="message-body">
+        <p>Aún no hay libros en préstamo.</p>
+      </div>
+    </article>
+    </section>
     {% endif %}       
 {% endblock %}
 
