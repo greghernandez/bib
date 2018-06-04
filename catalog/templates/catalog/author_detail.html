@@ -1,12 +1,21 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
-<h1>Autor: {{ author }} </h1>
-<p>{{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %}</p>
-
-<div style="margin-left:20px;margin-top:20px">
-<h4>Libros</h4>
+<style>
+  .hero{
+    margin:10px auto 0px auto !important;
+  }
+</style>
+<section class="hero welcome is-small is-primary">
+      <div class="hero-body">
+        <div class="container">
+            <h1 class="title">{{ author }}</h1>
+            <h2 class="subtitle">{{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %}</h2>
+        </div>
+    </div>
+</section>
+<section class="section cont-normal column is-12">
+<h4 class="subtitle is-3">Libros</h4>
 
 <dl>
 {% for book in author.book_set.all %}
@@ -15,5 +24,5 @@
 {% endfor %}
 </dl>
 
-</div>
+</section>
 {% endblock %}
